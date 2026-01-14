@@ -4,6 +4,7 @@ import os
 
 # Installed Modules
 import pytest
+import math
 
 # Project Modules
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
@@ -68,3 +69,24 @@ def test_get_nth_fibonacci_ten():
 
     # Assert
     assert result == 55
+
+
+def test_area_of_circle_positive_radius():
+    """Test with a positive radius."""
+    radius = 1
+
+    result = area_of_circle(radius)
+
+    assert result == pytest.approx(math.pi)
+
+
+def test_area_of_circle_negative_radius_raises():
+    """Negative radius should raise ValueError."""
+    with pytest.raises(ValueError):
+        area_of_circle(-1)
+
+
+def test_get_nth_fibonacci_negative_raises():
+    """Negative n should raise ValueError."""
+    with pytest.raises(ValueError):
+        get_nth_fibonacci(-5)
